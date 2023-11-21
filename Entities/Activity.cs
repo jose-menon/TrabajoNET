@@ -1,5 +1,4 @@
 ﻿using TrabajoNET.DTOs;
-using TrabajoNET.Helpers;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,12 +18,12 @@ namespace TrabajoNET.Entities
         [Column("activity_Iscompleted")]
         public bool IsCompleted { get; set; }
 
-        public static implicit operator User(ActivityRegisterDTO v)
+        public static implicit operator Activity(ActivityRegisterDTO v)
         {
             var activity = new Activity();
-            activity.title = v.Title;
-            activity.description = v.Description;
-            return user;
+            activity.Title = v.Title;
+            activity.Description = v.Description;
+            return activity;
         }
     }
 }

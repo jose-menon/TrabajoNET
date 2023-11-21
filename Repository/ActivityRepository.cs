@@ -14,11 +14,11 @@ namespace TrabajoNET.Repository
 
         }
 
-        public async Task<List<Activity>> GetAllUsers()
+        public async Task<List<Activity>> GetAllActivities()
         {
             try
             {
-                return await _contextDB.Activities.Where(x => x.IsDeleted == false).ToListAsync(); ;
+                return await _contextDB.Activities.Where(x => x.IsCompleted == false).ToListAsync(); ;
             }
             catch (Exception ex)
             {
@@ -28,7 +28,7 @@ namespace TrabajoNET.Repository
 
         }
 
-        public async Task<Activity?> GetUserId(int id)
+        public async Task<Activity?> GetActivityId(int id)
         {
             try
             {
@@ -78,8 +78,8 @@ namespace TrabajoNET.Repository
         {
             try
             {
-                var activities = await GetActivityId(id);
-                activity.IsDeleted = true;
+                var activity = await GetActivityId(id);
+                activity.IsCompleted = true;
 
                 return await base.Update(activity);
             }
