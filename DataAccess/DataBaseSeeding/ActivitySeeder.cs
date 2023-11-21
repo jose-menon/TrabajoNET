@@ -4,7 +4,7 @@ using TrabajoNET.Entities;
 
 namespace TrabajoNET.DataAccess.DatabaseSeeding
 {
-    public class UserSeeder : IEntitySeeder
+    public class ActivitySeeder : IEntitySeeder
     {
         public void SeedDatabase(ModelBuilder modelBuilder)
         {

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TrabajoNET.DTOs;
 using TrabajoNET.Infrastructure;
@@ -20,16 +19,17 @@ namespace TrabajoNET.Controllers
 
         [HttpGet]
         [Route("GetAll")]
+
         public async Task<IActionResult> GetAll()
         {
-            return ResponseFactory.CreateSuccessResponse(200, await _unitOfWork.UserRepository.GetAll());
+            return ResponseFactory.CreateSuccessResponse(200, await _unitOfWork.ActivityRepository.GetAll());
         }
 
         [HttpPost]
         [Route("Register")]
         public async Task<IActionResult> Register(ActivityRegisterDTO activityRegisterDTO)
         {
-            var result = await _unitOfWork.UserRepository.InsertUser(activityRegisterDTO);
+            var result = await _unitOfWork.ActivityRepository.InsertActivity(activityRegisterDTO);
             if (result)
             {
 
@@ -44,7 +44,7 @@ namespace TrabajoNET.Controllers
         [Route("Update")]
         public async Task<IActionResult> Update(int id, ActivityRegisterDTO activityRegisterDTO)
         {
-            var result = await _unitOfWork.UserRepository.UpdateUser(activityRegisterDTO, id);
+            var result = await _unitOfWork.ActivityRepository.UpdateActivity(activityRegisterDTO, id);
             if (result)
             {
                 await _unitOfWork.Complete();
@@ -58,7 +58,7 @@ namespace TrabajoNET.Controllers
         [Route("Delete")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await _unitOfWork.ActivityRepository.DeleteUser(id);
+            var result = await _unitOfWork.ActivityRepository.DeleteActivity(id);
             if (result)
             {
                 await _unitOfWork.Complete();
