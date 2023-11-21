@@ -12,16 +12,16 @@ namespace TrabajoNET.DataAccess.DatabaseSeeding
                 new Activity
                 {
                     Id = 1,
-                    Title = "46274628736",
-                    Description = "alaskja@sjasja.com",
+                    Title = "prueba",
+                    Description = "elemento prueba",
                     IsCompleted = false,
                     
                 },
                 new Activity
                 {
                     Id = 2,
-                    Title = "46278736",
-                    Description = "akja@sjasja.com",
+                    Title = "salir",
+                    Description = "tomar aire",
                     IsCompleted = false,
                 }
             );
