@@ -22,6 +22,19 @@ namespace TrabajoNET
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
             builder.Services.AddScoped<IUnitOfWork, UnitOfWorkService>();
+
+            var proveedor = builder.Services.BuildServiceProvider();
+            var configuration = proveedor.GetRequiredService<IConfiguration>();
+
+            builder.Services.AddCors(opciones =>
+            {
+                var frontendURL = configuration.GetValue<string>("Frontend_url");
+
+                opciones.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader();
+                });
+            });
                             
             var app = builder.Build();
 
@@ -33,6 +46,8 @@ namespace TrabajoNET
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();
